@@ -12,7 +12,7 @@ RUN go build -o /app/bin/app ./main.go
 FROM scratch
 
 WORKDIR /
-
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=build /app/bin/app /app
 
 ENTRYPOINT [ "/app" ]
